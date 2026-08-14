@@ -1,5 +1,5 @@
 import { getImage } from 'astro:assets';
-import { STORE_PAGE } from '../data/affiliate';
+import { STORE_PAGE } from '../config/site';
 import { about, faqs, products, site } from '../data/site';
 
 /**

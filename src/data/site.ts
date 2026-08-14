@@ -1,4 +1,4 @@
-import { affiliateUrl, targets } from './affiliate';
+import { amazonTargets, buildAmazonLink } from '../config/site';
 
 import product1Image from '../assets/product-1.jpg';
 import product2Image from '../assets/product-2.jpg';
@@ -15,7 +15,7 @@ export const site = {
   url: 'https://myapowus.com',
   phone: '+1-800-284-4873',
   hours: 'MON - FRI: 9AM-5PM (EST)',
-  amazonUrl: affiliateUrl(targets.primary),
+  amazonUrl: buildAmazonLink(amazonTargets.primary),
   copyright: 'Copyright © 2026 - Apowus',
 } as const;
 
@@ -67,7 +67,7 @@ export const products = [
     text: 'The APOWUS portable nebulizer is ideal for both children and adults, offering convenience and versatility wherever and whenever needed. This compact, pocket-sized device is not only easy to transport but also utilizes a blend of micro-holes and ultrasonic mesh technology to provide quiet and efficient relief for a range of respiratory issues.',
     image: product1Image,
     imageAlt: 'APOWUS portable nebulizer for travel and household use',
-    amazonUrl: affiliateUrl(targets.product1),
+    amazonUrl: buildAmazonLink(amazonTargets.product1),
     badge: 'Best for travel',
     reverse: false,
   },
@@ -76,7 +76,7 @@ export const products = [
     text: 'The APOWUS nebulizer utilizes a mesh membrane structure containing 2800 micropores, working alongside ultrasonic technology to convert liquid into extremely fine mist particles (with a diameter of 5 μm). This mist is directly delivered to the respiratory tract and lungs, swiftly alleviating symptoms of COPD, asthma, and other respiratory conditions.',
     image: product2Image,
     imageAlt: 'APOWUS portable nebulizer with three nebulization modes',
-    amazonUrl: affiliateUrl(targets.product2),
+    amazonUrl: buildAmazonLink(amazonTargets.product2),
     badge: '3 smart modes',
     reverse: true,
   },
@@ -85,7 +85,7 @@ export const products = [
     text: 'For individuals experiencing dyspnea, a portable nebulizer can be a game-changing device. Bid farewell to cumbersome nebulizers. The APOWUS portable nebulizer, powered by batteries, is compact enough to fit in the palm of your hand, enabling you to take your treatment with you wherever you need to go. It offers a rapid and efficient solution suitable for ages 3 to 75.',
     image: product3Image,
     imageAlt: 'APOWUS portable nebulizer with three masks and adjustable rate',
-    amazonUrl: affiliateUrl(targets.product3),
+    amazonUrl: buildAmazonLink(amazonTargets.product3),
     badge: 'Complete kit',
     reverse: false,
   },
