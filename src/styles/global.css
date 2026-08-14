@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-1: #81a9e4;
+  --color-brand-2: #6440a7;
+  --color-brand-3: #0a2117;
+  --color-brand-4: #0c0d0c;
+  --color-brand-5: #e6f0ee;
+  --color-brand-6: #f2f7f6;
+  --color-brand-7: #fbfcfc;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    @apply bg-brand-7 text-brand-4 antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    @apply bg-brand-1/30 text-brand-3;
+  }
+}
+
+@layer components {
+  .container-main {
+    @apply mx-auto max-w-6xl px-4 lg:px-6;
+  }
+
+  .section-padding {
+    @apply py-20 md:py-24;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center rounded-full border border-brand-1/30 bg-brand-1/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-brand-2;
+  }
+
+  .section-title {
+    @apply text-balance text-3xl font-bold tracking-tight text-brand-3 md:text-4xl lg:text-5xl;
+  }
+
+  .section-lead {
+    @apply mt-4 max-w-2xl text-pretty text-base leading-relaxed text-brand-4/75 md:text-lg;
+  }
+
+  .glass-header {
+    @apply border-b border-white/10 bg-brand-7/80 backdrop-blur-xl backdrop-saturate-150;
+  }
+
+  .card-modern {
+    @apply rounded-3xl border border-brand-5 bg-white/90 p-6 shadow-[0_20px_60px_-30px_rgba(10,33,23,0.25)] transition duration-300 md:p-8;
+  }
+
+  .card-modern:hover {
+    @apply -translate-y-1 border-brand-1/40 shadow-[0_28px_70px_-28px_rgba(100,64,167,0.35)];
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand-2 to-brand-1 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-2/25 transition hover:scale-[1.02] hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-2;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-brand-5 bg-white px-7 py-3.5 text-sm font-semibold text-brand-3 transition hover:border-brand-1 hover:bg-brand-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-2;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-brand-1 to-brand-2 bg-clip-text text-transparent;
+  }
+
+  .mesh-bg {
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(129, 169, 228, 0.18), transparent 40%),
+      radial-gradient(circle at 80% 0%, rgba(100, 64, 167, 0.12), transparent 35%),
+      radial-gradient(circle at 50% 100%, rgba(230, 240, 238, 0.9), transparent 50%);
+  }
+}

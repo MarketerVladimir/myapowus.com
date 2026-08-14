@@ -1,0 +1,28 @@
+---
+import '../styles/global.css';
+import SeoHead from '../components/SeoHead.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+
+const { title, description, noindex } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <SeoHead title={title} description={description} noindex={noindex} />
+  </head>
+  <body class="mesh-bg">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:shadow-lg"
+    >
+      Skip to content
+    </a>
+    <slot />
+  </body>
+</html>

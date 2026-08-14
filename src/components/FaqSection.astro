@@ -1,0 +1,29 @@
+---
+import { faqs } from '../data/site';
+---
+
+<section id="faq" class="section-padding scroll-mt-20">
+  <div class="container-main">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="eyebrow">FAQ</p>
+      <h2 class="section-title mt-4">Frequently asked questions</h2>
+      <p class="section-lead mx-auto">Quick answers about APOWUS portable nebulizers, purchasing, and support.</p>
+    </div>
+
+    <div class="mx-auto mt-12 max-w-3xl space-y-4">
+      {
+        faqs.map((faq) => (
+          <details class="group card-modern !p-0">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 marker:content-none">
+              <h3 class="text-left text-base font-semibold text-brand-3 md:text-lg">{faq.question}</h3>
+              <span class="text-brand-2 transition group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <div class="border-t border-brand-5 px-6 pb-5 pt-4">
+              <p class="leading-relaxed text-brand-4/80">{faq.answer}</p>
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>

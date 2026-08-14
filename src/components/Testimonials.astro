@@ -1,0 +1,48 @@
+---
+import { Image } from 'astro:assets';
+import { testimonials } from '../data/site';
+---
+
+<section id="testimonials" class="section-padding scroll-mt-20 bg-brand-6/80">
+  <div class="container-main">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="eyebrow">Customer reviews</p>
+      <h2 class="section-title mt-4">Trusted by families nationwide</h2>
+      <p class="section-lead mx-auto">Real feedback from APOWUS customers who switched from bulky nebulizers to portable mesh technology.</p>
+    </div>
+
+    <div class="mt-14 grid gap-6 md:grid-cols-3">
+      {
+        testimonials.map((item) => (
+          <article class="card-modern flex flex-col">
+            <div class="mb-4 flex items-center justify-between">
+              <Image
+                src={item.image}
+                alt={`Photo of ${item.name}`}
+                width={56}
+                height={56}
+                densities={[1, 2]}
+                format="webp"
+                class="h-14 w-14 rounded-full object-cover ring-2 ring-brand-1/30"
+              />
+              <div class="text-brand-1" aria-hidden="true">
+                ★★★★★
+              </div>
+            </div>
+
+            <blockquote class="flex-1 text-sm leading-relaxed text-brand-4/80">
+              <p>“{item.text}”</p>
+            </blockquote>
+
+            <footer class="mt-6 border-t border-brand-5 pt-4">
+              <cite class="not-italic">
+                <p class="font-semibold text-brand-3">{item.name}</p>
+                <p class="text-xs text-brand-4/60">{item.role}</p>
+              </cite>
+            </footer>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

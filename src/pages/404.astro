@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { navLinks, site } from '../data/site';
+---
+
+<BaseLayout
+  title={`Page not found | ${site.name}`}
+  description="That page doesn’t exist. Browse APOWUS portable mesh nebulizers instead."
+  noindex
+>
+  <Header />
+  <main id="main" class="section-padding">
+    <div class="container-main flex min-h-[50vh] flex-col items-center justify-center text-center">
+      <p class="eyebrow">Error 404</p>
+      <h1 class="section-title mt-4">This page doesn’t exist</h1>
+      <p class="section-lead mx-auto">
+        The link may be outdated. Everything on the APOWUS site is on the home page — pick a section below.
+      </p>
+
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="/" class="btn-primary">Back to home</a>
+        <a href={site.amazonUrl} target="_blank" rel="noopener noreferrer" class="btn-secondary">
+          Shop on Amazon
+        </a>
+      </div>
+
+      <nav class="mt-10" aria-label="Site sections">
+        <ul class="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm">
+          {
+            navLinks.map((link) => (
+              <li>
+                <a href={`/${link.href}`} class="text-brand-2 underline-offset-4 hover:underline">
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
