@@ -16,7 +16,9 @@ export const site = {
   phone: '+1-800-284-4873',
   hours: 'MON - FRI: 9AM-5PM (EST)',
   amazonUrl: buildAmazonLink(amazonTargets.primary),
-  copyright: 'Copyright © 2026 - Apowus',
+  /** Shown as "Copyright © <year> - <owner>"; the year is filled in at build time
+   *  and refreshed in the browser, so it never goes stale between deploys. */
+  copyrightOwner: 'Apowus',
 } as const;
 
 export const navLinks = [

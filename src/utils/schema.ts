@@ -42,7 +42,7 @@ export async function getStructuredData() {
         '@id': `${site.url}/#organization`,
         name: site.name,
         url: site.url,
-        logo: `${site.url}/images/apple-touch-icon.png`,
+        logo: `${site.url}/apple-touch-icon.png`,
         contactPoint: {
           '@type': 'ContactPoint',
           telephone: site.phone,

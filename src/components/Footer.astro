@@ -3,6 +3,9 @@ import { Image } from 'astro:assets';
 import { navLinks, site } from '../data/site';
 import { AFFILIATE_DISCLOSURE } from '../config/site';
 import logoWhite from '../assets/logo-white.png';
+
+/** Baked in at build time; the inline script below corrects it if the year has rolled over. */
+const buildYear = new Date().getFullYear();
 ---
 
 <footer class="mt-8 bg-brand-3 text-white">
@@ -66,13 +69,16 @@ import logoWhite from '../assets/logo-white.png';
   </div>
 
   <div class="border-t border-white/10">
-    <div class="container-main flex flex-col items-center justify-between gap-3 py-5 text-center text-sm text-white/60 md:flex-row md:text-left">
-      <p>{site.copyright}</p>
-      <p>
-        <a href="/llms.txt" class="hover:text-white">llms.txt</a>
-        ·
-        <a href="/robots.txt" class="hover:text-white">robots.txt</a>
-      </p>
+    <div class="container-main py-5 text-center text-sm text-white/60">
+      <p>Copyright © <span data-current-year>{buildYear}</span> - {site.copyrightOwner}</p>
     </div>
   </div>
 </footer>
+
+<script>
+  // The build-time year is correct until New Year's Eve of a year with no deploy.
+  // This keeps it right without waiting for a rebuild.
+  const slot = document.querySelector<HTMLElement>('[data-current-year]');
+  const now = String(new Date().getFullYear());
+  if (slot && slot.textContent !== now) slot.textContent = now;
+</script>

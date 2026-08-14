@@ -64,9 +64,10 @@ const ogImageUrl = new URL(ogImage.src, site.url).href;
 <meta name="color-scheme" content="light" />
 <meta name="format-detection" content="telephone=yes" />
 
-<link rel="icon" href="/favicon.ico" sizes="32x32" />
-<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-<link rel="icon" href="/images/favicon-32.png" type="image/png" sizes="32x32" />
-<link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+{/* Icons are generated from the brand logo by scripts/generate-favicons.mjs */}
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+<link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
 <script type="application/ld+json" set:html={JSON.stringify(structuredData)} is:inline />
