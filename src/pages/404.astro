@@ -2,12 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { navLinks, site } from '../data/site';
+import { navLinks, site, products, buyUrl } from '../data/site';
 ---
 
 <BaseLayout
   title={`Page not found | ${site.name}`}
-  description="That page doesn’t exist. Browse APOWUS portable mesh nebulizers instead."
+  description="That page doesn’t exist. Compare portable steam inhalers on the home page instead."
   noindex
 >
   <Header />
@@ -16,13 +16,18 @@ import { navLinks, site } from '../data/site';
       <p class="eyebrow">Error 404</p>
       <h1 class="section-title mt-4">This page doesn’t exist</h1>
       <p class="section-lead mx-auto">
-        The link may be outdated. Everything on the APOWUS site is on the home page — pick a section below.
+        The link may be outdated. Everything on this site is on the home page — pick a section below.
       </p>
 
       <div class="mt-8 flex flex-wrap justify-center gap-3">
         <a href="/" class="btn-primary">Back to home</a>
-        <a href={site.amazonUrl} target="_blank" rel="noopener noreferrer" class="btn-secondary">
-          Shop on Amazon
+        <a
+          href={buyUrl(products[0].asin)}
+          target="_blank"
+          rel="sponsored noopener noreferrer"
+          class="btn-secondary"
+        >
+          See an alternative on Amazon
         </a>
       </div>
 

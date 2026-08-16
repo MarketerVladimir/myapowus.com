@@ -1,6 +1,4 @@
-import { getImage } from 'astro:assets';
-import { STORE_PAGE } from '../config/site';
-import { about, faqs, products, site } from '../data/site';
+import { buyUrl, faqs, products, site } from '../data/site';
 
 /**
  * JSON-LD for the home page.
@@ -9,62 +7,31 @@ import { about, faqs, products, site } from '../data/site';
  * - `Offer.price` — the page shows no prices, and Google rejects an Offer
  *   without `price`/`priceCurrency`. Advertising a price we don't control
  *   would also go stale the moment Amazon changes it.
- * - `Review` / `AggregateRating` — the testimonials are customer reviews of
- *   our own product, which Google's structured-data policy excludes from
- *   rich results. They stay on the page as plain HTML.
+ * - `Review` / `AggregateRating` — we don't review these products ourselves.
+ * - Any `Organization`-as-manufacturer claim — this page does not make or
+ *   sell anything; it links out to each product's real manufacturer/seller.
  */
-export async function getStructuredData() {
-  const productSchemas = await Promise.all(
-    products.map(async (product) => {
-      // Reuse a rendition the page already ships, so the crawler image costs no extra build output.
-      const image = await getImage({ src: product.image, format: 'jpeg', width: 500 });
-
-      return {
-        '@type': 'Product',
-        name: product.title,
-        description: product.text,
-        image: new URL(image.src, site.url).href,
-        brand: {
-          '@type': 'Brand',
-          name: 'APOWUS',
-        },
-        category: 'Portable Mesh Nebulizer',
-        url: `${site.url}/#products`,
-      };
-    }),
-  );
+export function getStructuredData() {
+  const productSchemas = products.map((product) => ({
+    '@type': 'Product',
+    name: product.title,
+    description: product.text,
+    brand: {
+      '@type': 'Brand',
+      name: product.brand,
+    },
+    url: buyUrl(product.asin),
+  }));
 
   return {
     '@context': 'https://schema.org',
     '@graph': [
-      {
-        '@type': 'Organization',
-        '@id': `${site.url}/#organization`,
-        name: site.name,
-        url: site.url,
-        logo: `${site.url}/apple-touch-icon.png`,
-        contactPoint: {
-          '@type': 'ContactPoint',
-          telephone: site.phone,
-          contactType: 'customer service',
-          areaServed: 'US',
-          availableLanguage: 'English',
-          hoursAvailable: {
-            '@type': 'OpeningHoursSpecification',
-            dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-            opens: '09:00',
-            closes: '17:00',
-          },
-        },
-        sameAs: [STORE_PAGE],
-      },
       {
         '@type': 'WebSite',
         '@id': `${site.url}/#website`,
         url: site.url,
         name: site.name,
         description: site.description,
-        publisher: { '@id': `${site.url}/#organization` },
         inLanguage: 'en-US',
       },
       {
@@ -74,7 +41,6 @@ export async function getStructuredData() {
         name: site.title,
         description: site.description,
         isPartOf: { '@id': `${site.url}/#website` },
-        about: { '@id': `${site.url}/#organization` },
         inLanguage: 'en-US',
       },
       ...productSchemas,
@@ -89,16 +55,6 @@ export async function getStructuredData() {
             text: faq.answer,
           },
         })),
-      },
-      {
-        '@type': 'MedicalWebPage',
-        name: about.title,
-        description: about.intro,
-        about: {
-          '@type': 'MedicalDevice',
-          name: 'APOWUS Portable Mesh Nebulizer',
-          manufacturer: { '@id': `${site.url}/#organization` },
-        },
       },
     ],
   };

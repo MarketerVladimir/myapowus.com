@@ -3,24 +3,18 @@ import ProductCard from './ProductCard.astro';
 import { products } from '../data/site';
 ---
 
-<section id="products" class="scroll-mt-20">
-  <div class="container-main pb-6 pt-4">
+<section id="products" class="scroll-mt-20 section-padding">
+  <div class="container-main">
     <div class="mx-auto max-w-2xl text-center">
-      <p class="eyebrow">Product lineup</p>
-      <h2 class="section-title mt-4">Portable nebulizers for every lifestyle</h2>
+      <p class="eyebrow">Compare</p>
+      <h2 class="section-title mt-4">Currently available alternatives</h2>
       <p class="section-lead mx-auto">
-        Choose the APOWUS model that fits your routine — all available on Amazon US with fast delivery options.
+        Real, currently-sold models we found on Amazon.com — no invented specs, no fabricated prices.
       </p>
     </div>
-  </div>
 
-  {
-    products.map((product, index) => (
-      <div class={`section-padding ${index % 2 === 0 ? 'bg-brand-6/70' : ''}`}>
-        <div class="container-main">
-          <ProductCard {...product} />
-        </div>
-      </div>
-    ))
-  }
+    <div class="mt-14 grid gap-6 md:grid-cols-3">
+      {products.map((product) => <ProductCard {...product} />)}
+    </div>
+  </div>
 </section>

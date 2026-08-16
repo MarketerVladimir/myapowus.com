@@ -1,184 +1,182 @@
-import { amazonTargets, buildAmazonLink } from '../config/site';
-
-import product1Image from '../assets/product-1.jpg';
-import product2Image from '../assets/product-2.jpg';
-import product3Image from '../assets/product-3.jpg';
-import user4Image from '../assets/user4.jpg';
-import user5Image from '../assets/user5.jpg';
-import user7Image from '../assets/user7.jpg';
+import { buildAmazonLink } from '../config/site';
 
 export const site = {
-  name: 'APOWUS Nebulizer',
-  title: 'APOWUS Portable Nebulizer | Official Site for Adults & Kids',
+  name: 'APOWUS Portable Nebulizer',
+  title: 'APOWUS Portable Nebulizer — No Longer Sold on Amazon | Alternatives',
   description:
-    'Shop APOWUS portable mesh nebulizers — quiet, pocket-sized devices for asthma, COPD & travel. 2800 micropores, 3 modes, masks included. Official brand site.',
+    'APOWUS portable nebulizers are no longer listed on Amazon.com (checked 16 August 2026). ' +
+    'This independent page explains what we found and compares portable steam inhalers you can actually buy today.',
   url: 'https://myapowus.com',
-  phone: '+1-800-284-4873',
-  hours: 'MON - FRI: 9AM-5PM (EST)',
-  amazonUrl: buildAmazonLink(amazonTargets.primary),
   /** Shown as "Copyright © <year> - <owner>"; the year is filled in at build time
    *  and refreshed in the browser, so it never goes stale between deploys. */
-  copyrightOwner: 'Apowus',
+  copyrightOwner: 'myapowus.com',
+  /**
+   * Rendered next to the APOWUS wordmark in the header and again in the footer.
+   * The domain, the logo and the brand name together imply an official site, so
+   * this has to appear alongside them rather than only far down the page.
+   */
+  notAffiliated:
+    'Independent site — not affiliated with, endorsed by, or operated by APOWUS.',
+} as const;
+
+/**
+ * Everything published here about APOWUS availability was observed directly, on
+ * this date, with the Amazon delivery address set to the United States — a
+ * non-US address makes live US listings return the same "Page Not Found", so
+ * the check is worthless without it. Re-check before changing any wording.
+ */
+export const APOWUS_LAST_VERIFIED = '16 August 2026';
+
+/**
+ * The observed facts, and nothing beyond them. Deliberately not phrased as a
+ * quotation from Amazon: the pages return a 404, not the "Currently
+ * unavailable / we don't know when or if this item will be back in stock"
+ * state, and attributing that wording to Amazon would be an invention.
+ */
+export const apowusStatus = {
+  eyebrow: 'Status update',
+  title: 'APOWUS nebulizers are no longer listed on Amazon',
+  findings: [
+    'Every APOWUS product page this site previously linked to now returns Amazon’s “Page Not Found”.',
+    'A search for “APOWUS nebulizer” on Amazon.com returns results, but none of them are APOWUS products.',
+    'The APOWUS brand storefront on Amazon is still online, but its own search for “nebulizer” returns nothing.',
+  ],
+  caveat:
+    'We don’t know why the listings were removed, or whether they will come back. ' +
+    'If you are looking for a nebulizer today, the models below are ones we confirmed are actually on sale.',
 } as const;
 
 export const navLinks = [
-  { label: 'About', href: '#about' },
-  { label: 'Products', href: '#products' },
-  { label: 'Video', href: '#video' },
-  { label: 'Reviews', href: '#testimonials' },
+  { label: 'APOWUS status', href: '#apowus-status' },
+  { label: 'Alternatives', href: '#products' },
+  { label: 'How to choose', href: '#how-to-choose' },
   { label: 'FAQ', href: '#faq' },
 ] as const;
 
-export const heroStats = [
-  { value: '2800', label: 'Micropores' },
-  { value: '<25dB', label: 'Quiet operation' },
-  { value: '3–75', label: 'Age range' },
-  { value: '5 μm', label: 'Particle size' },
-] as const;
-
 export const hero = {
-  eyebrow: 'Official APOWUS brand site',
-  title: 'Breathing Innovation, Transforming Lives',
+  eyebrow: `Checked ${APOWUS_LAST_VERIFIED}`,
+  title: 'Looking for an APOWUS portable nebulizer?',
   subtitle:
-    'Portable mesh nebulizers engineered for quiet, effective respiratory relief — at home, at work, or on the go.',
-  cta: 'Check price on Amazon',
-  ctaSecondary: 'Explore products',
+    'They are no longer listed on Amazon.com — we checked, and the product pages return “Page Not Found”. ' +
+    'Here is exactly what we found, and portable steam inhalers you can still buy today.',
+  cta: 'See what we found',
+  ctaSecondary: 'Skip to alternatives',
 } as const;
 
+/**
+ * What this page helps a reader evaluate — not device specs, since those vary by
+ * model and brand and belong on the product's own listing, not here.
+ */
 export const features = [
   {
-    title: 'Trusted by families',
-    text: 'APOWUS offers dependable products and top-notch services backed by responsive US support.',
-    icon: 'home',
+    title: 'Steam vs. mesh',
+    text: 'Steam inhalers heat water into vapor; mesh nebulizers vibrate liquid through a membrane. Steam is simpler and needs no medication; mesh nebulizers can atomize prescribed solutions.',
+    icon: 'droplet',
   },
   {
-    title: 'Ease of use',
-    text: 'Three modes with one-button control, smart indicator lights, and a low-battery reminder built in.',
-    icon: 'users',
-  },
-  {
-    title: 'Economical choice',
-    text: 'Treat at home and save time and money — no bulky hospital-grade equipment required.',
+    title: 'Noise and portability',
+    text: 'Check the listing for decibel rating, battery vs. cord, and weight if you plan to travel with it or use it at night without waking anyone.',
     icon: 'wallet',
   },
-] as const;
-
-export const products = [
   {
-    title: 'Nebulizer Machine for Adults and Kids Travel and Household Use',
-    text: 'The APOWUS portable nebulizer is ideal for both children and adults, offering convenience and versatility wherever and whenever needed. This compact, pocket-sized device is not only easy to transport but also utilizes a blend of micro-holes and ultrasonic mesh technology to provide quiet and efficient relief for a range of respiratory issues.',
-    image: product1Image,
-    imageAlt: 'APOWUS portable nebulizer for travel and household use',
-    amazonUrl: buildAmazonLink(amazonTargets.product1),
-    badge: 'Best for travel',
-    reverse: false,
-  },
-  {
-    title: 'Nebulizer for Adults and Kids with 3 Modes',
-    text: 'The APOWUS nebulizer utilizes a mesh membrane structure containing 2800 micropores, working alongside ultrasonic technology to convert liquid into extremely fine mist particles (with a diameter of 5 μm). This mist is directly delivered to the respiratory tract and lungs, swiftly alleviating symptoms of COPD, asthma, and other respiratory conditions.',
-    image: product2Image,
-    imageAlt: 'APOWUS portable nebulizer with three nebulization modes',
-    amazonUrl: buildAmazonLink(amazonTargets.product2),
-    badge: '3 smart modes',
-    reverse: true,
-  },
-  {
-    title: 'Nebulizer for Adults and Kids with 3 Nebulizer Masks and Adjustable Nebulization Rate',
-    text: 'For individuals experiencing dyspnea, a portable nebulizer can be a game-changing device. Bid farewell to cumbersome nebulizers. The APOWUS portable nebulizer, powered by batteries, is compact enough to fit in the palm of your hand, enabling you to take your treatment with you wherever you need to go. It offers a rapid and efficient solution suitable for ages 3 to 75.',
-    image: product3Image,
-    imageAlt: 'APOWUS portable nebulizer with three masks and adjustable rate',
-    amazonUrl: buildAmazonLink(amazonTargets.product3),
-    badge: 'Complete kit',
-    reverse: false,
+    title: 'What is actually included',
+    text: 'Kits vary: masks, mouthpieces, aromatherapy pads and carry cases are sometimes bundled and sometimes sold separately. Read the listing\'s contents list before buying.',
+    icon: 'home',
   },
 ] as const;
 
+export interface Product {
+  /** Real ASIN, verified live on Amazon at the time this page was written. */
+  asin: string;
+  brand: string;
+  title: string;
+  /** Plain facts only — pulled from the product's own Amazon listing, not invented. */
+  text: string;
+  badge?: string;
+}
+
+export const products: Product[] = [
+  {
+    asin: 'B07WGXM2TT',
+    brand: 'Mypurmist',
+    title: 'Mypurmist Free Cordless Steam & Sinus Inhaler Essential Kit',
+    text: 'A cordless, battery-powered personal steam inhaler aimed at sinus congestion, cold symptoms, and vocal-care steaming for singers. No cord means it can be used away from an outlet.',
+    badge: 'Cordless',
+  },
+  {
+    asin: 'B08MWX3SQ5',
+    brand: 'Mypurmist',
+    title: 'Mypurmist Premium Value Pack — Handheld Ultrapure Instant Steam Inhaler',
+    text: 'A corded, handheld steam inhaler positioned for allergy, nasal congestion, cold, cough and sinus relief, plus general vaporizer/humidifier use. Listed as FSA/HSA eligible.',
+    badge: 'FSA/HSA eligible',
+  },
+  {
+    asin: 'B003C1IIQM',
+    brand: 'Vicks',
+    title: 'Vicks Waterless Vaporizer V1800',
+    text: 'A plug-in personal vaporizer from Vicks, compatible with Vicks VapoPads for scented vapor. A corded, tabletop alternative to a handheld inhaler.',
+    badge: 'VapoPad compatible',
+  },
+];
+
+export const buyUrl = (asin: string) => buildAmazonLink(asin);
+
+/** Short, honest editorial note — this is what replaces brand self-promotion. */
 export const about = {
-  title: 'Welcome to Apowus – Your Trusted Source for Portable Nebulizers',
+  title: 'About this page',
   intro:
-    'At Apowus, we’re dedicated to revolutionizing respiratory care with our innovative line of portable nebulizers. As experienced marketers in the healthcare industry, we understand the importance of accessible and reliable respiratory solutions, which is why we’re proud to offer cutting-edge nebulizer technology tailored to meet the needs of modern lifestyles.',
-  sections: [
+    'This site was originally built around APOWUS portable nebulizers. Those listings have since ' +
+    'disappeared from Amazon, so rather than keep sending people to buttons that lead nowhere, the page ' +
+    'now says plainly what we found and points to portable steam inhalers that are genuinely on sale.',
+  points: [
     {
-      heading: 'Our Portable Nebulizers: Empowering Health on the Go',
-      text: 'Designed for convenience and efficacy, our portable nebulizers empower individuals to take control of their respiratory health wherever they go. Whether you’re managing chronic respiratory conditions like asthma or COPD, or simply seeking relief from occasional respiratory issues, our nebulizers deliver targeted medication directly to the lungs for fast and effective relief.',
+      title: 'We are not APOWUS, and not affiliated with them',
+      text: 'The APOWUS name and logo belong to APOWUS and are used here only to identify the product this page is about. For anything official — warranty, support, current lineup — go to APOWUS directly.',
     },
     {
-      heading: 'Why Choose Apowus Portable Nebulizers?',
-      items: [
-        {
-          title: 'Superior Performance',
-          text: 'Engineered with advanced technology and precision engineering, Apowus portable nebulizers ensure optimal medication delivery with every use. Experience superior performance and consistent results you can rely on.',
-        },
-        {
-          title: 'Compact and Lightweight Design',
-          text: 'Say goodbye to bulky, cumbersome nebulizers. Our portable devices boast a sleek, compact design that fits seamlessly into your lifestyle. Whether you’re traveling, commuting, or simply on-the-go, our nebulizers offer unmatched portability without compromising on performance.',
-        },
-        {
-          title: 'Whisper-Quiet Operation',
-          text: 'Enjoy discreet and peaceful nebulization therapy thanks to our whisper-quiet operation. Our nebulizers are designed to deliver medication quietly and efficiently, allowing you to use them anytime, anywhere without disrupting your daily activities or those around you.',
-        },
-        {
-          title: 'Easy to Use',
-          text: 'At Apowus, we believe in making respiratory care as simple and straightforward as possible. That’s why our portable nebulizers are incredibly easy to use, featuring intuitive controls and hassle-free maintenance for a stress-free experience.',
-        },
-        {
-          title: 'Long-lasting Battery Life',
-          text: 'Never be caught off guard by low battery again. Our portable nebulizers are equipped with long-lasting battery life, ensuring uninterrupted use when you need it most. Stay powered up and prepared for whatever the day brings with Apowus.',
-        },
-      ],
+      title: 'We do not manufacture or sell anything ourselves',
+      text: 'Every "Buy" link goes to the product\'s own Amazon listing, run by that brand or its authorized seller — not to us.',
     },
     {
-      heading: 'Experience the Apowus Difference Today',
-      text: 'Discover the future of respiratory care with Apowus portable nebulizers. Whether you’re a healthcare professional seeking innovative solutions for your patients or an individual looking to enhance your respiratory wellness, we invite you to explore our range of products and experience the Apowus difference for yourself. Transform the way you breathe, one nebulizer at a time.',
+      title: 'We only state what the listing states',
+      text: 'Specs, included accessories and claims come from each product\'s own Amazon page. We do not test devices or invent numbers.',
+    },
+    {
+      title: 'We earn a commission, and say so',
+      text: 'As an Amazon Associate we earn from qualifying purchases made through these links, at no extra cost to you.',
     },
   ],
 } as const;
 
 export const faqs = [
   {
-    question: 'What is an APOWUS portable nebulizer?',
+    question: 'Can I still buy an APOWUS portable nebulizer?',
     answer:
-      'APOWUS portable nebulizers are handheld mesh devices that convert liquid medication into a fine mist (around 5 μm particles) for direct delivery to the lungs. They are designed for adults and children ages 3 to 75.',
+      `Not on Amazon.com, as of ${APOWUS_LAST_VERIFIED}. Every APOWUS product page we had linked to returns Amazon's "Page Not Found", a search for "APOWUS nebulizer" returns no APOWUS products, and the APOWUS brand storefront — which is still online — returns nothing for its own search for "nebulizer". We don't know whether the listings will return. APOWUS may still sell through other channels; this page only reports what we could observe on Amazon.`,
   },
   {
-    question: 'Is the APOWUS nebulizer quiet enough for children?',
+    question: 'Is this the official APOWUS site?',
     answer:
-      'Yes. APOWUS devices operate below 25 dB — quieter than a whisper — making them suitable for nighttime or travel use without disturbing sleep.',
+      'No. Despite the domain name, this is an independent page and is not affiliated with, endorsed by, or operated by APOWUS. The APOWUS name and logo are used to identify the product this page is about. For official information, warranty or support, contact APOWUS directly.',
   },
   {
-    question: 'Where can I buy APOWUS nebulizers?',
+    question: 'What is the difference between a steam inhaler and a mesh nebulizer?',
     answer:
-      'APOWUS products are available on Amazon.com (US). Use the Buy Now buttons on this official site to reach the correct listings with our authorized seller partners.',
+      'A steam inhaler heats water and delivers warm vapor to the face — no medication is required. A mesh nebulizer vibrates liquid through a fine membrane to create a mist, which is how it can atomize prescribed solutions like saline or albuterol. Check the specific listing to see which type a given model is.',
   },
   {
-    question: 'Does APOWUS offer customer support?',
+    question: 'Is this the official site for Mypurmist or Vicks?',
     answer:
-      'Yes. Contact our US support line at +1-800-284-4873, Monday through Friday, 9 AM to 5 PM EST.',
+      'No. APOWUS, Mypurmist and Vicks are trademarks of their respective owners. Their own sites and Amazon storefronts are the authoritative source for their products, warranties and support.',
   },
   {
-    question: 'Can I use the APOWUS nebulizer while traveling?',
+    question: 'Why don\'t you show prices here?',
     answer:
-      'Absolutely. The device is pocket-sized, battery/USB powered, and includes a storage bag — ideal for home, office, and travel.',
-  },
-] as const;
-
-export const testimonials = [
-  {
-    name: 'Martha Andrews',
-    role: 'Verified customer',
-    image: user4Image,
-    text: 'I absolutely adore this product. It’s completely silent—no noise whatsoever! It’s also incredibly user-friendly. However, it’s crucial to use rechargeable batteries. Despite the claim that alkaline batteries are compatible, they didn’t work for me, even when brand new. So, I switched to rechargeable ones. The best aspect, though, is that it’s rechargeable, so you rarely need batteries unless there’s a power outage.',
+      'Amazon prices change frequently and vary by account, location and promotions. Rather than show a number that could be stale or wrong, every listing links straight to Amazon so you see the current price before buying.',
   },
   {
-    name: 'George Moss',
-    role: 'Verified customer',
-    image: user5Image,
-    text: 'I needed a nebulizer for asthma and recently developed bronchitis, so I decided to try this portable nebulizer. It’s fantastic! Whisper-quiet and weighs only a few ounces. Compared to the bulky old 6-pound nebulizer with tubes and a medicine cup, it’s like night and day! It comes with a nice selection of mask sizes, plus a mouthpiece, USB cord, and handy storage bag. Easy to fill and clean. Works like a charm, and I highly recommend it.',
-  },
-  {
-    name: 'Jennifer Anderson',
-    role: 'Verified customer',
-    image: user7Image,
-    text: 'I’ve been eyeing a portable nebulizer for some time now, and after seeing the positive reviews, I decided to purchase this one. It’s compact in size, and even my 5-year-old can hold it comfortably. The nebulizer operates almost silently, with only the sound of mist being emitted, and I’m impressed by how quickly it works. Overall, I’m extremely satisfied with my new nebulizer.',
+    question: 'How did you pick these products?',
+    answer:
+      'We looked for portable, personal-use steam inhalers currently sold on Amazon.com from established manufacturers. We have not tested these devices ourselves — read the reviews on each Amazon listing before deciding.',
   },
 ] as const;

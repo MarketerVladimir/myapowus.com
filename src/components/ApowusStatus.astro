@@ -1,0 +1,40 @@
+---
+import { apowusStatus, APOWUS_LAST_VERIFIED } from '../data/site';
+---
+
+<section id="apowus-status" class="section-padding scroll-mt-20">
+  <div class="container-main">
+    <div class="mx-auto max-w-3xl">
+      <p class="eyebrow">{apowusStatus.eyebrow}</p>
+      <h2 class="section-title mt-4">{apowusStatus.title}</h2>
+
+      <ul class="mt-8 space-y-4">
+        {
+          apowusStatus.findings.map((finding) => (
+            <li class="flex gap-3 rounded-2xl border border-brand-5 bg-white p-5 shadow-sm">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="22"
+                height="22"
+                aria-hidden="true"
+                class="mt-0.5 shrink-0 fill-current text-brand-2"
+              >
+                <path d="M12 2 1 21h22L12 2Zm0 5.5 7.5 12.9h-15L12 7.5ZM11 11v4.5h2V11h-2Zm0 5.8v2h2v-2h-2Z" />
+              </svg>
+              <p class="text-pretty leading-relaxed text-brand-4/85">{finding}</p>
+            </li>
+          ))
+        }
+      </ul>
+
+      <p class="mt-8 text-pretty leading-relaxed text-brand-4/80">{apowusStatus.caveat}</p>
+
+      <p class="mt-4 text-sm text-brand-4/60">
+        Checked on <time datetime="2026-08-16">{APOWUS_LAST_VERIFIED}</time> with the Amazon delivery
+        address set to the United States. A non-US delivery address makes live US-only listings return
+        the same “Page Not Found”, so the result is only meaningful with a US address.
+      </p>
+    </div>
+  </div>
+</section>

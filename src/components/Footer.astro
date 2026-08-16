@@ -1,11 +1,12 @@
 ---
 import { Image } from 'astro:assets';
-import { navLinks, site } from '../data/site';
+import { navLinks, site, products } from '../data/site';
 import { AFFILIATE_DISCLOSURE } from '../config/site';
 import logoWhite from '../assets/logo-white.png';
 
 /** Baked in at build time; the inline script below corrects it if the year has rolled over. */
 const buildYear = new Date().getFullYear();
+const brands = [...new Set(products.map((p) => p.brand))];
 ---
 
 <footer class="mt-8 bg-brand-3 text-white">
@@ -13,16 +14,16 @@ const buildYear = new Date().getFullYear();
     <div class="lg:col-span-1">
       <Image
         src={logoWhite}
-        alt={site.name}
-        width={64}
-        height={64}
+        alt="APOWUS logo"
+        width={40}
+        height={40}
         densities={[1, 2]}
         format="webp"
-        class="h-14 w-14"
+        class="h-10 w-10"
         loading="lazy"
       />
       <p class="mt-4 text-sm leading-relaxed text-white/70">
-        Official APOWUS brand website for portable mesh nebulizers — quiet, effective respiratory care for adults and children.
+        {site.notAffiliated} APOWUS, {brands.join(' and ')} are trademarks of their respective owners.
       </p>
     </div>
 
@@ -42,23 +43,18 @@ const buildYear = new Date().getFullYear();
     </div>
 
     <div>
-      <h4 class="text-sm font-semibold uppercase tracking-wider text-white/90">Shop</h4>
-      <p class="mt-4 text-sm text-white/70">Available on Amazon.com (US). Set your delivery location to a US address to view listings.</p>
-      <a href={site.amazonUrl} target="_blank" rel="noopener noreferrer" class="btn-primary mt-4 !text-xs">
-        View on Amazon
-      </a>
+      <h4 class="text-sm font-semibold uppercase tracking-wider text-white/90">Brands covered</h4>
+      <ul class="mt-4 space-y-2 text-sm text-white/70">
+        {brands.map((brand) => <li>{brand}</li>)}
+      </ul>
     </div>
 
     <div>
       <h4 class="text-sm font-semibold uppercase tracking-wider text-white/90">Support</h4>
       <p class="mt-4 text-sm text-white/70">
-        <a href={`tel:${site.phone.replace(/[^\d+]/g, '')}`} class="font-medium text-white hover:underline">
-          {site.phone}
-        </a>
-        <br />
-        {site.hours}
+        We don't sell or ship these products, so we can't help with orders or warranty claims. For
+        support, contact the seller through your Amazon order page.
       </p>
-      <p class="mt-4 text-xs text-white/50">Fast, reliable delivery · Hassle-free returns via Amazon</p>
     </div>
   </div>
 

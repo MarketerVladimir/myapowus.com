@@ -5,21 +5,25 @@ import logo from '../assets/logo.png';
 ---
 
 <header class="glass-header sticky top-0 z-50">
+  {/* The note beside the wordmark is hidden below `sm`, so it is repeated here. */}
+  <p class="border-b border-brand-5/60 bg-brand-6/70 px-4 py-1.5 text-center text-[11px] leading-tight text-brand-4/80 sm:hidden">
+    {site.notAffiliated}
+  </p>
   <div class="container-main flex items-center justify-between gap-4 py-3">
-    <a href="#top" class="group flex shrink-0 items-center gap-3" aria-label={`${site.name} home`}>
+    <a href="#top" class="group flex shrink-0 items-center gap-3" aria-label={`${site.name} — home`}>
       <Image
         src={logo}
-        alt={site.name}
-        width={48}
-        height={48}
+        alt="APOWUS logo"
+        width={40}
+        height={40}
         densities={[1, 2]}
         format="webp"
-        class="h-11 w-11 transition group-hover:scale-105"
+        class="h-9 w-9 transition group-hover:scale-105"
         loading="eager"
       />
       <div class="hidden sm:block">
         <p class="text-sm font-bold text-brand-3">{site.name}</p>
-        <p class="text-xs text-brand-4/60">Official brand site</p>
+        <p class="text-xs text-brand-4/60">Independent site — not affiliated with APOWUS</p>
       </div>
     </a>
 
@@ -34,9 +38,6 @@ import logo from '../assets/logo.png';
           </a>
         ))
       }
-      <a href={site.amazonUrl} target="_blank" rel="noopener noreferrer" class="btn-primary ml-2 !px-5 !py-2.5 text-xs">
-        Shop Amazon
-      </a>
     </nav>
 
     <details class="relative lg:hidden">
@@ -57,14 +58,6 @@ import logo from '../assets/logo.png';
             </a>
           ))
         }
-        <a
-          href={site.amazonUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn-primary mt-2 w-full !text-xs"
-        >
-          Shop Amazon
-        </a>
       </nav>
     </details>
   </div>

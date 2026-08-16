@@ -8,10 +8,6 @@
 /** Amazon Associates tracking ID. Commission is credited on this value. */
 export const ASSOCIATE_TAG = 'rjkey-20';
 
-/** Verified-live APOWUS brand storefront (US). */
-export const STORE_PAGE =
-  'https://www.amazon.com/stores/APOWUS/page/678859B2-A702-4A67-ADDA-027D748AD63E';
-
 const ASIN_PATTERN = /^B0[A-Z0-9]{8}$/i;
 
 export interface AmazonLinkOptions {
@@ -20,14 +16,15 @@ export interface AmazonLinkOptions {
 }
 
 /**
- * Build a tagged Amazon URL from an ASIN, full Amazon URL, or storefront fallback.
+ * Build a tagged Amazon URL from an ASIN or a full Amazon URL.
  *
- * @param asinOrUrl - ASIN (e.g. `B0BTTF5RFJ`), full `https://www.amazon.com/...` URL, or `null` for the brand store.
+ * This site links to products from several independent manufacturers, so —
+ * unlike a single-brand storefront — there is no sensible "default" to fall
+ * back to. Every call site must name a real ASIN.
+ *
+ * @param asinOrUrl - ASIN (e.g. `B0BTTF5RFJ`) or a full `https://www.amazon.com/...` URL.
  */
-export function buildAmazonLink(
-  asinOrUrl: string | null,
-  options: AmazonLinkOptions = {},
-): string {
+export function buildAmazonLink(asinOrUrl: string, options: AmazonLinkOptions = {}): string {
   const base = resolveAmazonBase(asinOrUrl);
 
   const params = new URLSearchParams({
@@ -38,26 +35,19 @@ export function buildAmazonLink(
   });
 
   if (options.linkId) params.set('linkId', options.linkId);
-  if (asinOrUrl && ASIN_PATTERN.test(asinOrUrl)) params.set('th', '1');
+  if (ASIN_PATTERN.test(asinOrUrl)) params.set('th', '1');
 
   return `${base}?${params.toString()}`;
 }
 
-function resolveAmazonBase(asinOrUrl: string | null): string {
-  if (!asinOrUrl) return STORE_PAGE;
+function resolveAmazonBase(asinOrUrl: string): string {
   if (ASIN_PATTERN.test(asinOrUrl)) return `https://www.amazon.com/dp/${asinOrUrl}`;
   if (asinOrUrl.startsWith('http://') || asinOrUrl.startsWith('https://')) return asinOrUrl;
   throw new Error(`Invalid Amazon link target: ${asinOrUrl}`);
 }
 
-/** Link targets per placement — change ASINs here only. */
-export const amazonTargets = {
-  primary: null,
-  product1: null,
-  product2: null,
-  product3: null,
-} as const satisfies Record<string, string | null>;
-
 /** FTC + Amazon Associates Operating Agreement disclosure. */
 export const AFFILIATE_DISCLOSURE =
-  'As an Amazon Associate we earn from qualifying purchases. Prices and availability are set by Amazon and may change.';
+  'This is an independent page, not the official site of APOWUS or of any other brand named here. ' +
+  'As an Amazon Associate we earn from qualifying purchases. Prices, availability and specifications ' +
+  'are set by Amazon and the manufacturer, and may change — check the listing before buying.';
