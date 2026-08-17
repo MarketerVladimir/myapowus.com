@@ -1,83 +1,30 @@
 ---
-import { Picture, getImage } from 'astro:assets';
-import videoPoster from '../assets/video-poster.jpg';
-
-/** Single optimized URL for the <video poster> attribute, which takes no srcset. */
-const posterFallback = await getImage({
-  src: videoPoster,
-  format: 'webp',
-  width: 1280,
-});
+const videoSrc = '/videos/promo.mp4';
+const posterSrc = '/images/apowus/video-poster.jpg';
 ---
 
-<section id="video" class="section-padding scroll-mt-20 bg-brand-3 text-white">
+<section id="video" class="section-padding scroll-mt-20 bg-brand-6">
   <div class="container-main">
     <div class="mx-auto max-w-2xl text-center">
-      <p class="eyebrow !border-white/20 !bg-white/10 !text-white/90">Product video</p>
-      <h2 class="section-title mt-4 !text-white">See APOWUS in action</h2>
-      <p class="section-lead mx-auto !text-white/75">
-        Watch how the mesh nebulizer delivers a fine, quiet mist — optimized for home and travel use.
+      <p class="eyebrow">Product video</p>
+      <h2 class="section-title mt-4">See the APOWUS Portable Nebulizer in action</h2>
+      <p class="section-lead mx-auto">
+        Watch how the APOWUS Portable Nebulizer works at home.
       </p>
     </div>
 
-    <div class="relative mx-auto mt-12 max-w-5xl overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
-      <div
-        id="video-shell"
-        class="relative aspect-video bg-black"
-        data-poster={posterFallback.src}
-        data-src="/videos/promo.mp4"
+    <div class="mx-auto mt-12 max-w-5xl overflow-hidden rounded-3xl border border-brand-5 bg-white shadow-[0_20px_60px_-30px_rgba(10,33,23,0.25)]">
+      <video
+        class="aspect-video w-full bg-black object-cover"
+        src={videoSrc}
+        controls
+        playsinline
+        preload="metadata"
+        poster={posterSrc}
       >
-        <Picture
-          src={videoPoster}
-          formats={['avif', 'webp']}
-          widths={[640, 1024, 1536]}
-          sizes="(min-width: 1024px) 1024px, 100vw"
-          alt="APOWUS portable nebulizer product video poster"
-          class="absolute inset-0 h-full w-full object-cover"
-          loading="lazy"
-        />
-        <button
-          id="video-play"
-          type="button"
-          class="absolute inset-0 flex items-center justify-center bg-brand-3/35 transition hover:bg-brand-3/45 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-white"
-          aria-label="Play APOWUS product video"
-        >
-          <span class="flex h-20 w-20 items-center justify-center rounded-full bg-white/95 text-brand-2 shadow-xl">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="34" height="34" aria-hidden="true" class="ml-1 fill-current">
-              <path d="M8 5v14l11-7z"></path>
-            </svg>
-          </span>
-        </button>
-      </div>
+        <track kind="captions" />
+        Your browser does not support embedded video. <a href={videoSrc}>Download the video</a>.
+      </video>
     </div>
   </div>
 </section>
-
-<script>
-  const shell = document.getElementById('video-shell');
-  const playBtn = document.getElementById('video-play');
-
-  playBtn?.addEventListener(
-    'click',
-    () => {
-      if (!shell) return;
-
-      const video = document.createElement('video');
-      video.className = 'h-full w-full object-cover';
-      video.controls = true;
-      video.autoplay = true;
-      video.playsInline = true;
-      video.preload = 'metadata';
-      video.poster = shell.dataset.poster ?? '';
-
-      const source = document.createElement('source');
-      source.src = shell.dataset.src ?? '';
-      source.type = 'video/mp4';
-      video.append(source);
-
-      shell.replaceChildren(video);
-      video.focus();
-    },
-    { once: true },
-  );
-</script>

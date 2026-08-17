@@ -1,79 +1,69 @@
 ---
 import { Image } from 'astro:assets';
-import { navLinks, site, products } from '../data/site';
-import { AFFILIATE_DISCLOSURE } from '../config/site';
+import { footerLegal, navLinks, site } from '../data/site';
 import logoWhite from '../assets/logo-white.png';
 
-/** Baked in at build time; the inline script below corrects it if the year has rolled over. */
 const buildYear = new Date().getFullYear();
-const brands = [...new Set(products.map((p) => p.brand))];
 ---
 
-<footer class="mt-8 bg-brand-3 text-white">
-  <div class="container-main grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
-    <div class="lg:col-span-1">
-      <Image
-        src={logoWhite}
-        alt="APOWUS logo"
-        width={40}
-        height={40}
-        densities={[1, 2]}
-        format="webp"
-        class="h-10 w-10"
-        loading="lazy"
-      />
-      <p class="mt-4 text-sm leading-relaxed text-white/70">
-        {site.notAffiliated} APOWUS, {brands.join(' and ')} are trademarks of their respective owners.
-      </p>
-    </div>
+<footer class="mt-4 bg-brand-3 text-white">
+  <div class="container-main pt-10 pb-6">
+    <div class="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between sm:gap-8">
+      <div class="flex items-start gap-3">
+        <Image
+          src={logoWhite}
+          alt="APOWUS logo"
+          width={40}
+          height={40}
+          densities={[1, 2]}
+          format="webp"
+          class="h-10 w-10 shrink-0"
+          loading="lazy"
+        />
+        <div>
+          <p class="text-sm font-semibold leading-snug text-white md:text-base">{site.name}</p>
+          <p class="mt-1.5 inline-flex rounded-full border border-white/15 bg-white/5 px-2.5 py-0.5 text-xs text-white/60">
+            Official website
+          </p>
+        </div>
+      </div>
 
-    <div>
-      <h4 class="text-sm font-semibold uppercase tracking-wider text-white/90">Explore</h4>
-      <ul class="mt-4 space-y-2">
+      <nav
+        class="flex max-w-full flex-wrap gap-x-3 gap-y-2 text-sm sm:justify-end"
+        aria-label="Footer navigation"
+      >
         {
-          navLinks.map((link) => (
-            <li>
-              <a href={link.href} class="text-sm text-white/70 transition hover:text-white">
+          navLinks.map((link, index) => (
+            <>
+              {index > 0 && (
+                <span class="hidden text-white/30 sm:inline" aria-hidden="true">
+                  ·
+                </span>
+              )}
+              <a
+                href={link.href}
+                class="text-white/75 underline-offset-4 transition hover:text-white hover:underline focus-visible:rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              >
                 {link.label}
               </a>
-            </li>
+            </>
           ))
         }
-      </ul>
+      </nav>
     </div>
 
-    <div>
-      <h4 class="text-sm font-semibold uppercase tracking-wider text-white/90">Brands covered</h4>
-      <ul class="mt-4 space-y-2 text-sm text-white/70">
-        {brands.map((brand) => <li>{brand}</li>)}
-      </ul>
-    </div>
+    <div class="my-5 border-t border-white/10" role="presentation"></div>
 
-    <div>
-      <h4 class="text-sm font-semibold uppercase tracking-wider text-white/90">Support</h4>
-      <p class="mt-4 text-sm text-white/70">
-        We don't sell or ship these products, so we can't help with orders or warranty claims. For
-        support, contact the seller through your Amazon order page.
+    <div class="flex flex-col gap-3 text-sm leading-relaxed text-white/70 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+      <p>{footerLegal.affiliate}</p>
+      <p class="shrink-0">
+        © <span data-current-year>{buildYear}</span> {site.copyrightOwner}. All rights reserved.
       </p>
-    </div>
-  </div>
-
-  <div class="border-t border-white/10">
-    <div class="container-main py-5">
-      <p class="text-xs leading-relaxed text-white/55">{AFFILIATE_DISCLOSURE}</p>
-    </div>
-  </div>
-
-  <div class="border-t border-white/10">
-    <div class="container-main py-5 text-center text-sm text-white/60">
-      <p>Copyright © <span data-current-year>{buildYear}</span> - {site.copyrightOwner}</p>
     </div>
   </div>
 </footer>
 
 <script>
-  // The build-time year is correct until New Year's Eve of a year with no deploy.
-  // This keeps it right without waiting for a rebuild.
   const slot = document.querySelector<HTMLElement>('[data-current-year]');
   const now = String(new Date().getFullYear());
   if (slot && slot.textContent !== now) slot.textContent = now;

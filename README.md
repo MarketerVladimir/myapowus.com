@@ -1,11 +1,13 @@
 # myapowus.com — Astro site
 
-An independent page about **APOWUS portable nebulizer availability**, plus links to
-portable steam inhalers that are actually on sale.
+An **authorized partner store** for the **APOWUS Portable Nebulizer**.
 
-This is deliberately **not** an official APOWUS site. APOWUS listings disappeared from
-Amazon.com; rather than keep pointing buy buttons at a storefront with nothing in it,
-the page states what was observed and links to alternatives.
+This is deliberately **not** the official APOWUS site — myapowus.com is an independent
+partner, not operated by APOWUS. That is disclosed in the header (next to the wordmark)
+and in the footer, alongside the affiliate/commission disclosure. The product is
+currently out of stock; `PRODUCT_PURCHASE_URL` in `src/data/site.ts` points at the
+manufacturer's own site until a real, live purchase link is available — see the TODO
+comment there before launch.
 
 ## Commands
 
@@ -53,37 +55,24 @@ Notes specific to Workers Static Assets:
 - `src/assets/` — images processed by `astro:assets` (responsive AVIF/WebP)
 - `public/` — favicons, `robots.txt`, `llms.txt`, `_headers`
 
-## Affiliate links
+## Purchase link
 
-Every Amazon URL is built by `buildAmazonLink()` in `src/config/site.ts`; never hardcode
-`tag=` in markup. Products live in `products` in `src/data/site.ts`, keyed by ASIN:
-
-```ts
-{ asin: 'B07WGXM2TT', brand: 'Mypurmist', title: '…', text: '…' }
-```
+If a real Amazon listing becomes available, build its URL with `buildAmazonLink()` in
+`src/config/site.ts` — never hardcode `tag=` in markup — and point `PRODUCT_PURCHASE_URL`
+in `src/data/site.ts` at it. Until then, `PRODUCT_PURCHASE_URL` deliberately points at
+`https://apowus.org/` so the CTA never links to something dead or misleading.
 
 **Verify an ASIN before committing it.** Open `https://www.amazon.com/dp/<ASIN>` with the
 Amazon delivery address set to a **US** location. With a non-US address, live US-only
 listings return the same "Page Not Found" as a dead ASIN, so the check is worthless
 without it.
 
-## The APOWUS availability claim
+## The availability claim
 
-`src/data/site.ts` holds `APOWUS_LAST_VERIFIED` and `apowusStatus`. These are the only
-place the page makes a factual claim about APOWUS, and every line was observed directly
-on that date with a US delivery address:
-
-- APOWUS product pages return Amazon's "Page Not Found"
-- an Amazon search for "APOWUS nebulizer" returns no APOWUS products
-- the APOWUS storefront is online, but its own search for "nebulizer" returns nothing
-
-Two rules when editing this:
-
-1. **Do not attribute wording to Amazon.** The pages 404 — they do not show the
-   "Currently unavailable / we don't know when or if this item will be back in stock"
-   state. Quoting that would invent a status nobody observed.
-2. **Re-check before changing the date.** If the listings return, the page needs
-   rewriting, not a date bump.
+`src/data/site.ts` holds `APOWUS_LAST_VERIFIED` and `availability`. Keep this factual —
+say "temporarily unavailable" / "coming soon" rather than implying the product can be
+bought today when `PRODUCT_PURCHASE_URL` isn't a live buy link yet. Re-check and update
+the wording (not just the date) once that changes.
 
 ## Notes
 

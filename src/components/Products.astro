@@ -1,20 +1,33 @@
 ---
-import ProductCard from './ProductCard.astro';
-import { products } from '../data/site';
+import { product } from '../data/site';
 ---
 
-<section id="products" class="scroll-mt-20 section-padding">
+<section id="product" class="scroll-mt-20 section-padding bg-brand-6">
   <div class="container-main">
-    <div class="mx-auto max-w-2xl text-center">
-      <p class="eyebrow">Compare</p>
-      <h2 class="section-title mt-4">Currently available alternatives</h2>
-      <p class="section-lead mx-auto">
-        Real, currently-sold models we found on Amazon.com — no invented specs, no fabricated prices.
-      </p>
-    </div>
+    <div class="grid items-center gap-10 rounded-3xl border border-brand-5 bg-white p-6 shadow-[0_20px_60px_-30px_rgba(10,33,23,0.25)] md:grid-cols-2 md:p-10">
+      <div class="overflow-hidden rounded-2xl bg-brand-6">
+        <img
+          src="/images/apowus/product-1.png"
+          alt={product.title}
+          width="800"
+          height="808"
+          class="h-full w-full object-contain"
+          loading="lazy"
+        />
+      </div>
 
-    <div class="mt-14 grid gap-6 md:grid-cols-3">
-      {products.map((product) => <ProductCard {...product} />)}
+      <div>
+        {product.badge && (
+          <p class="eyebrow mb-4 uppercase">{product.badge}</p>
+        )}
+        <p class="text-xs font-semibold uppercase tracking-wider text-brand-2">{product.brand}</p>
+        <h2 class="section-title mt-2 !text-left !text-3xl md:!text-4xl">{product.title}</h2>
+        <p class="mt-4 text-pretty leading-relaxed text-brand-4/80">{product.text}</p>
+        <p class="mt-6 text-pretty text-base leading-relaxed text-brand-4/80">{product.seoParagraph}</p>
+        <a href="#alternatives" class="btn-primary mt-8">
+          View available alternatives
+        </a>
+      </div>
     </div>
   </div>
 </section>

@@ -2,24 +2,29 @@
 import { faqs } from '../data/site';
 ---
 
-<section id="faq" class="section-padding scroll-mt-20">
+<section id="faq" class="section-padding scroll-mt-20 bg-brand-7">
   <div class="container-main">
-    <div class="mx-auto max-w-2xl text-center">
+    <div class="mx-auto max-w-3xl text-center">
       <p class="eyebrow">FAQ</p>
-      <h2 class="section-title mt-4">Frequently asked questions</h2>
-      <p class="section-lead mx-auto">Quick answers about portable steam inhalers, how they differ, and where to buy them.</p>
+      <h2 class="section-title mt-4">Frequently asked questions about APOWUS</h2>
+      <p class="section-lead mx-auto">
+        Answers about the APOWUS Portable Nebulizer, availability, and how it compares to steam inhalers.
+      </p>
     </div>
 
-    <div class="mx-auto mt-12 max-w-3xl space-y-4">
+    <div class="mx-auto mt-12 max-w-[960px] space-y-4">
       {
         faqs.map((faq) => (
-          <details class="group card-modern !p-0">
-            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 marker:content-none">
-              <h3 class="text-left text-base font-semibold text-brand-3 md:text-lg">{faq.question}</h3>
-              <span class="text-brand-2 transition group-open:rotate-45" aria-hidden="true">+</span>
+          <details
+            id={faq.id === 'steam-vs-mesh-faq' ? 'steam-vs-mesh-faq' : `faq-${faq.id}`}
+            class="group scroll-mt-24 card-modern !p-0"
+          >
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-6 marker:content-none md:px-7">
+              <h3 class="text-left text-[17px] font-semibold text-brand-3 md:text-lg">{faq.question}</h3>
+              <span class="shrink-0 text-xl leading-none text-brand-2 transition group-open:rotate-45" aria-hidden="true">+</span>
             </summary>
-            <div class="border-t border-brand-5 px-6 pb-5 pt-4">
-              <p class="leading-relaxed text-brand-4/80">{faq.answer}</p>
+            <div class="border-t border-brand-5 px-6 pb-6 pt-4 md:px-7 md:pb-7">
+              <p class="text-[15.5px] leading-relaxed text-brand-4/80 md:text-base md:leading-[1.6]">{faq.answer}</p>
             </div>
           </details>
         ))

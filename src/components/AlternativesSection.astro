@@ -1,0 +1,61 @@
+---
+import { alternatives, alternativesSection } from '../data/site';
+---
+
+<section id="alternatives" class="scroll-mt-20 section-padding bg-brand-7">
+  <div class="container-main">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="eyebrow">{alternativesSection.eyebrow}</p>
+      <h2 class="section-title mt-4 !text-3xl md:!text-4xl">{alternativesSection.title}</h2>
+      <p class="section-lead mx-auto">{alternativesSection.description}</p>
+      <p class="mx-auto mt-6 max-w-2xl rounded-2xl border border-brand-5 bg-brand-6 px-5 py-4 text-base leading-relaxed text-brand-4/80">
+        {alternativesSection.callout}
+      </p>
+      <p class="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-brand-4/70">
+        {alternativesSection.affiliateNote}
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        alternatives.map((item) => (
+          <article class="card-modern flex h-full flex-col">
+            <p class="eyebrow mb-4 self-start">{item.badge}</p>
+
+            <div class="alt-card-image">
+              <img
+                src={item.image}
+                alt={item.imageAlt}
+                width={item.imageWidth}
+                height={item.imageHeight}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+
+            <h3 class="mt-5 text-left text-lg font-semibold text-brand-3">{item.title}</h3>
+
+            <ul class="mt-4 flex-1 space-y-2.5 text-left text-[15px] leading-relaxed text-brand-4/80">
+              {item.bullets.map((bullet) => (
+                <li class="flex gap-2">
+                  <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-2" aria-hidden="true" />
+                  <span>{bullet}</span>
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href={item.amazonUrl}
+              target="_blank"
+              rel="nofollow sponsored noopener"
+              class="btn-primary mt-6 w-full"
+              aria-label={`Check price on Amazon for ${item.title}`}
+            >
+              Check price on Amazon
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

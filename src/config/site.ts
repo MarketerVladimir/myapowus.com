@@ -8,11 +8,17 @@
 /** Amazon Associates tracking ID. Commission is credited on this value. */
 export const ASSOCIATE_TAG = 'rjkey-20';
 
+/** APOWUS brand storefront on Amazon — default buy destination. */
+export const AMAZON_STORE_PAGE =
+  'https://www.amazon.com/stores/page/678859B2-A702-4A67-ADDA-027D748AD63E';
+
 const ASIN_PATTERN = /^B0[A-Z0-9]{8}$/i;
 
 export interface AmazonLinkOptions {
   /** SiteStripe linkId for per-placement reporting in Associates Central. */
   linkId?: string;
+  /** `sl1` for product links, `ll2` for storefront pages. */
+  linkCode?: 'sl1' | 'll2';
 }
 
 /**
@@ -28,7 +34,7 @@ export function buildAmazonLink(asinOrUrl: string, options: AmazonLinkOptions = 
   const base = resolveAmazonBase(asinOrUrl);
 
   const params = new URLSearchParams({
-    linkCode: 'sl1',
+    linkCode: options.linkCode ?? 'sl1',
     tag: ASSOCIATE_TAG,
     language: 'en_US',
     ref_: 'as_li_ss_tl',
@@ -46,8 +52,8 @@ function resolveAmazonBase(asinOrUrl: string): string {
   throw new Error(`Invalid Amazon link target: ${asinOrUrl}`);
 }
 
-/** FTC + Amazon Associates Operating Agreement disclosure. */
+/** FTC affiliate commission disclosure. */
 export const AFFILIATE_DISCLOSURE =
-  'This is an independent page, not the official site of APOWUS or of any other brand named here. ' +
-  'As an Amazon Associate we earn from qualifying purchases. Prices, availability and specifications ' +
-  'are set by Amazon and the manufacturer, and may change — check the listing before buying.';
+  'We may earn a commission on purchases made through links on this page, at no extra cost to you. ' +
+  'Prices, availability and specifications are set by the seller and manufacturer, and may change — ' +
+  'check the listing before buying.';

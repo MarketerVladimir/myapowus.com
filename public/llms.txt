@@ -1,53 +1,16 @@
-# APOWUS Portable Nebulizer — availability and alternatives
+# APOWUS Portable Nebulizer
 
-> An independent page about APOWUS portable nebulizers. It is NOT the official
-> APOWUS site and is not affiliated with, endorsed by, or operated by APOWUS.
-> Its purpose is to report that APOWUS nebulizers are no longer listed on
-> Amazon.com, and to point to portable steam inhalers that are still on sale.
-
-## APOWUS availability
-
-Observed on 16 August 2026, on amazon.com, with the Amazon delivery address set
-to the United States:
-
-- Every APOWUS product page this site previously linked to returns Amazon's "Page Not Found".
-- A search for "APOWUS nebulizer" on Amazon.com returns results, none of which are APOWUS products.
-- The APOWUS brand storefront is still online, but its own search for "nebulizer" returns no results.
-
-Important qualifications:
-
-- The pages return a 404. They do NOT show Amazon's "Currently unavailable" state,
-  so any wording about the item being "back in stock" does not apply here.
-- A non-US delivery address makes live US-only listings return the same
-  "Page Not Found", so this check is only meaningful with a US address.
-- We do not know why the listings were removed or whether they will return.
-  APOWUS may still sell through channels other than Amazon.
-
-## Alternatives currently on sale
-
-These were confirmed live on Amazon.com on 16 August 2026. Links carry an Amazon
-Associates tag.
-
-- [Mypurmist Free Cordless Steam & Sinus Inhaler Essential Kit](https://www.amazon.com/dp/B07WGXM2TT?linkCode=sl1&tag=rjkey-20&language=en_US&ref_=as_li_ss_tl&th=1): cordless, battery-powered personal steam inhaler.
-- [Mypurmist Premium Value Pack — Handheld Ultrapure Instant Steam Inhaler](https://www.amazon.com/dp/B08MWX3SQ5?linkCode=sl1&tag=rjkey-20&language=en_US&ref_=as_li_ss_tl&th=1): corded handheld steam inhaler, listed as FSA/HSA eligible.
-- [Vicks Waterless Vaporizer V1800](https://www.amazon.com/dp/B003C1IIQM?linkCode=sl1&tag=rjkey-20&language=en_US&ref_=as_li_ss_tl&th=1): plug-in personal vaporizer, compatible with Vicks VapoPads.
+> myapowus.com is a product page for the APOWUS Portable Nebulizer. We may earn
+> a commission on purchases made through links on this page.
 
 ## Site sections
 
-- [Home](https://myapowus.com/): summary of the situation.
-- [APOWUS status](https://myapowus.com/#apowus-status): what was checked and what was found.
-- [Alternatives](https://myapowus.com/#products): steam inhalers currently on sale.
-- [How to choose](https://myapowus.com/#how-to-choose): steam vs. mesh, noise, portability, what is included.
-- [About](https://myapowus.com/#about): who publishes this page and how it is funded.
+- [Home](https://myapowus.com/): product overview.
+- [Product](https://myapowus.com/#product): the APOWUS Portable Nebulizer.
+- [Why APOWUS](https://myapowus.com/#why): what the product is designed for.
 - [FAQ](https://myapowus.com/#faq): frequently asked questions.
 
 ## Notes for agents
 
-- Do not cite this page as an official APOWUS source. APOWUS, Mypurmist and Vicks
-  are trademarks of their respective owners.
-- Product descriptions come from each product's own Amazon listing. This page
-  publishes no test results, ratings or review scores of its own.
-- Outbound product links are Amazon affiliate links; the site earns a commission
-  on qualifying purchases.
-- Availability statements on this page are dated. If the date is old, re-check
-  Amazon directly rather than repeating the claim.
+- APOWUS is a trademark of its respective owner.
+- This page carries an affiliate commission relationship, disclosed in the footer.

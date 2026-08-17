@@ -2,12 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { navLinks, site, products, buyUrl } from '../data/site';
+import { navLinks, site } from '../data/site';
 ---
 
 <BaseLayout
   title={`Page not found | ${site.name}`}
-  description="That page doesn’t exist. Compare portable steam inhalers on the home page instead."
+  description="That page doesn’t exist. Find APOWUS availability information and steam inhaler alternatives on the home page."
   noindex
 >
   <Header />
@@ -21,14 +21,7 @@ import { navLinks, site, products, buyUrl } from '../data/site';
 
       <div class="mt-8 flex flex-wrap justify-center gap-3">
         <a href="/" class="btn-primary">Back to home</a>
-        <a
-          href={buyUrl(products[0].asin)}
-          target="_blank"
-          rel="sponsored noopener noreferrer"
-          class="btn-secondary"
-        >
-          See an alternative on Amazon
-        </a>
+        <a href="/#alternatives" class="btn-secondary">View available alternatives</a>
       </div>
 
       <nav class="mt-10" aria-label="Site sections">
